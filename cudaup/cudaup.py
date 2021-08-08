@@ -22,7 +22,7 @@ def read_src_sequence(srcdir, filepath):
     ''' read lines from file into sequence '''
     return tuple(Path("%s/%s" % (srcdir, filepath)).read_text().splitlines())
 
-class CudaUp():
+class CudaUp():  # pylint: disable=R0902
     ''' cudaup class '''
 
     def check_args(self):
@@ -85,8 +85,8 @@ class CudaUp():
         for repo in self.repos:
             checkout = "%s/%s" % (self.src, os.path.basename(repo))
             if not is_work_dir("%s/.git" % (checkout)):
-                self.run_cmd("git -C %s clone %s" % (self.src, repo))
-            self.run_cmd("git -C %s pull origin master" % (checkout))
+                self.run_cmd("%s -C %s clone %s" % (self.git, self.src, repo))
+            self.run_cmd("%s -C %s pull origin master" % (self.git, checkout))
 
     def packs(self):
         ''' packs '''
@@ -118,7 +118,7 @@ class CudaUp():
             cpu = 'i386'
         if self.args.os == 'win64':
             cpu = 'x86_64'
-        if cpu != platform.processor:
+        if cpu != platform.processor():
             incs.append('--cpu=%s' % cpu)
         if self.args.ws != "":
             incs.append('--ws=%s' % (self.args.ws))
@@ -128,7 +128,7 @@ class CudaUp():
             for packet in self.packets:
                 run_cmd('%s %s %s/%s' % (self.cmd1, inc, self.src, packet))
 
-        ws = self.args.ws if self.args.ws else "gtk2"
+        widget_set = self.args.ws if self.args.ws else "gtk2"
 
         app = "%s/CudaText/app" % (self.src)
         _cudatext = '%s/cudatext' % (app)
@@ -136,7 +136,7 @@ class CudaUp():
         run_cmd('rm -vf %s.exe' % (_cudatext))
         run_cmd('%s %s %s.lpi' % (self.cmd1, inc, _cudatext))
 
-        outdir = "%s/bin/%s-%s-%s" % (self.src, self.args.os, cpu, ws)
+        outdir = "%s/bin/%s-%s-%s" % (self.src, self.args.os, cpu, widget_set)
         run_cmd('mkdir -pv %s' % (outdir))
         if self.args.os in ('win32', 'win64'):
             run_cmd('cp -v %s.exe %s/cudatext.exe' % (_cudatext, outdir))
