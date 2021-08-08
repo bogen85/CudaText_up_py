@@ -74,7 +74,6 @@ class CudaUp():  # pylint: disable=R0902
 
     def get(self):
         ''' get '''
-
         if not self.args.get:
             return
 
