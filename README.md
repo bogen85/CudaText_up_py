@@ -2,7 +2,7 @@
 
 [See CudaText_up issue # 11](https://github.com/Alexey-T/CudaText_up/issues/11)
 
-Python flavor of [See CudaText_up](https://github.com/Alexey-T/CudaText_up)
+Python flavor of [CudaText_up](https://github.com/Alexey-T/CudaText_up)
 
 It seems to work on FreeBSD and Linux, but I'm sure I have permissions and other issues to work out.
 I've not exercised the ```install packages to Lazarus``` option as I've not made my own custom Lazarus directory.
