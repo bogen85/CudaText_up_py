@@ -63,8 +63,12 @@ class CudaUp():  # pylint: disable=R0902
 
 
     def check_src_dir(self):
-        ''' make src dir '''
-        self.run_cmd('mkdir -pv %s' % (self.src))
+        ''' check src dir '''
+        check_path(
+            self.src,
+            is_work_dir,
+            '"%s" is not already created' % self.src
+        )
 
     def clean(self):
         ''' clean '''
@@ -80,7 +84,7 @@ class CudaUp():  # pylint: disable=R0902
         if not self.git:
             fail('git was not found in the search PATH')
 
-        self.check_src_dir()
+        self.run_cmd('mkdir -pv %s' % (self.src))
         for repo in self.repos:
             checkout = "%s/%s" % (self.src, os.path.basename(repo))
             if not is_work_dir("%s/.git" % (checkout)):
@@ -107,6 +111,7 @@ class CudaUp():  # pylint: disable=R0902
             return
 
         self.check_src_dir()
+
         cpu = self.args.cpu
         run_cmd = self.run_cmd
 
@@ -117,7 +122,7 @@ class CudaUp():  # pylint: disable=R0902
             incs.append('--os=%s' % (self.args.os))
         if self.args.os == 'win32':
             cpu = 'i386'
-        if self.args.os == 'win64':
+        elif self.args.os == 'win64':
             cpu = 'x86_64'
         if cpu != platform.processor():
             incs.append('--cpu=%s' % cpu)
