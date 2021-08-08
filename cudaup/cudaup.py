@@ -93,6 +93,7 @@ class CudaUp():  # pylint: disable=R0902
         if not self.args.packs:
             return
 
+        self.check_src_dir()
         run_cmd = self.run_cmd
 
         for packet in self.packets:
@@ -106,6 +107,7 @@ class CudaUp():  # pylint: disable=R0902
         if not self.args.make:
             return
 
+        self.check_src_dir()
         cpu = self.args.cpu
         run_cmd = self.run_cmd
 
