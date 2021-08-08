@@ -40,11 +40,11 @@ class CudaUp():  # pylint: disable=R0902
                 "Could not find lazbuild (%s)\nUse -l <path> option" %
                 self.lazbuild
             )
-        if not is_work_dir(self.args.work_dir):
-            fail(
-                '"%s" is not a suitable working directory' %
-                self.args.work_dir
-            )
+        check_path(
+            self.args.work_dir,
+            is_work_dir,
+            '"%s" is not a suitable working directory' % self.args.work_dir
+        )
 
     def __init__(self, args):
         self.args = args
