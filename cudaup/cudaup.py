@@ -48,13 +48,13 @@ class CudaUp():  # pylint: disable=R0902
 
     def __init__(self, args):
         self.args = args
-        self.src = exe_src()
+        self.script_src = exe_src()
 
         self.lazbuild = "%s/lazbuild" % (self.args.lazdir)
         self.args.work_dir = os.path.realpath(args.work_dir)
         self.check_args()
-        self.packets = read_src_sequence(self.src, CUDAUP_PACKETS_IN)
-        self.repos = read_src_sequence(self.src, CUDAUP_REPOS_IN)
+        self.packets = read_src_sequence(self.script_src, CUDAUP_PACKETS_IN)
+        self.repos = read_src_sequence(self.script_src, CUDAUP_REPOS_IN)
         self.git = which('git')
         self.src = "%s/src" % (self.args.work_dir)
         self.run_cmd = checked_shell_script
