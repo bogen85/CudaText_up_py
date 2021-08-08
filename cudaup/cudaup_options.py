@@ -46,7 +46,6 @@ def args():
             '--clean', action='store_true',
             help='delete temp Free Pascal folders (%s)' % BUILD_TEMP,
         )(
-
             '-wd', '--work-dir', '--working-directory',
             metavar='work_dir',
             default=os.getcwd(),
