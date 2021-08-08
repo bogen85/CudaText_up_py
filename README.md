@@ -4,7 +4,9 @@
 
 Python flavor of [See CudaText_up](https://github.com/Alexey-T/CudaText_up)
 
-It seems to work on FreeBSD and Linux, but I'm sure I have permissions and other issues to work out, plus I've not exercised the "install packages to Lazarus" as I've not make my own custom Lazarus directory.
+It seems to work on FreeBSD and Linux, but I'm sure I have permissions and other issues to work out.
+I've not exercised the ```install packages to Lazarus``` option as I've not made my own custom Lazarus directory.
+I will do so the exercise that option.
 
 As such, I would consider this work in progress as I work out any issues.
 
